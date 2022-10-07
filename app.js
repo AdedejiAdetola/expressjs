@@ -1,19 +1,20 @@
-const http = require('http');
-
 const express = require('express');
+const bodyParser = require('body-parser');
+
+const path = require('path');
 
 const app = express();
 
-app.use((req, res, next) => {
-     console.log('In the middle of the back-end!');
-     next();
-});
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
 
 app.use((req, res, next) => {
-    console.log('In the middle of the second back-end!');
-    res.send("<h1>Hello from Express!</h1>")
-});
+    res.status(404).sendFile(path.join(__dirname, 'views', 'pnf.html'))
+}) //this line runs, if the route taken does not exist in our app
 
-const server = http.createServer(app);
-
-server.listen(4000);
+app.listen(4000);
