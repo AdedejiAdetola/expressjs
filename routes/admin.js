@@ -3,7 +3,9 @@ const router = express.Router();
 
 const path = require('path');
 
-const rootDir = require('../utils/baseDir')
+const rootDir = require('../utils/baseDir');
+
+
 
 //this route is defined as /admin/add-product => GET
 router.get('/add-product',(req, res, next) => {
