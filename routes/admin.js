@@ -4,7 +4,7 @@ const router = express.Router();
 const path = require('path');
 
 const rootDir = require('../utils/baseDir');
-
+const products = [];
 
 
 //this route is defined as /admin/add-product => GET
@@ -15,8 +15,11 @@ router.get('/add-product',(req, res, next) => {
 
 //this route is defined as /admin/add-product => POST
 router.post('/add-product', (req, res, next) => {
-    console.log(req.body);
+    
+    products.push({ title: req.body.title});
+    // console.log('admin',products);
     res.redirect('/');
 });
 
-module.exports = router;
+exports.routes = router;
+exports.products = products;
