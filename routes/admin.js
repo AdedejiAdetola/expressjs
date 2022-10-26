@@ -10,7 +10,7 @@ const products = [];
 //this route is defined as /admin/add-product => GET
 router.get('/add-product',(req, res, next) => {
     //  console.log('In the middle of the back-end!');
-     res.sendFile(path.join(rootDir, 'views', 'add-product.html'))
+     res.status(200).render('add-product', { pageTitle: 'oAdd-products Page'});
 });
 
 //this route is defined as /admin/add-product => POST
